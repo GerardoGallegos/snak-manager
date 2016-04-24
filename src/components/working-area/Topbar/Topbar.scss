@@ -1,0 +1,51 @@
+/*    [ COMPONENT REACT    Topbar ]
+=========================================================================*/
+
+.Topbar {
+  width: 100%;
+  height: 67px; //90px;
+  position: absolute;
+  top: 0;
+  background-color: #333;
+  box-shadow: 0 5px 23px rgba(0,0,0,0.43);
+
+  &__timer {
+    line-height: 2;
+    margin-right: 10px;
+    color: #00E8FF;
+    float: right;
+    font-size: 25px;
+  }
+}
+
+
+.ToolsPanel{
+    width: 100%;
+    height: 70px;
+    position: absolute;
+    background-color: transparent;
+    top: 8px;
+    display: flex;
+    justify-content: center;
+    //transition: transform 0.3s ease;
+    animation: slideTopIn 0.5s ease;
+}
+
+
+.slideTop-out {
+  transform: translateY(-200px);
+}
+
+.slideTop-in {
+  transform: translateY(0px);
+}
+
+
+@keyframes slideTopIn{
+  0% {
+    transform: translateY(-200px);
+  }
+  100% {
+    transform: translateY(0px)
+  }
+}

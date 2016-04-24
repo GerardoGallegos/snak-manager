@@ -1,0 +1,33 @@
+
+// Config
+@import '../../App.scss';
+
+
+/*    [ COMPONENT REACT    MediumBar ]
+=========================================================================*/
+
+.MediumBar {
+  width: 100%;
+  background-color: #333;
+  height: 15px;
+  border-bottom: 5px solid #FFF;
+  z-index: 60;
+  position: absolute;
+  bottom: 135px;
+
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.26);
+
+  &-code {
+    border-bottom: 5px solid $color_code;
+  }
+
+  &-instructions {
+    border-bottom: 5px solid $color_instruction;
+  }
+
+  &-image {
+    border-bottom: 5px solid $color_image;
+  }
+
+
+}

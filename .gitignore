@@ -1,0 +1,4 @@
+# Ignore Node Modules
+/node_modules
+npm-debug.log
+/assets/audio/audio_test_01.mp3

@@ -1,0 +1,113 @@
+//@import './icons.css';
+
+$mainColor    : #00FFFF;
+$bgMainColor  : #333333;
+$hoverColor   : rgb(255, 161, 50);
+$optionColor  : #FFEB3B;
+
+
+.RockMenu {
+
+   user-select: none;
+   display: inline-block;
+   padding: 5px;
+   background-color: $bgMainColor;
+   font-size: 16px;
+   cursor: pointer;
+   position: relative;
+   font-family: 'PT Sans';
+   float: left;
+   margin-left: 4px;
+   height: 40px;
+
+   &__selected {
+     padding:10px 35px;
+     background-color: $bgMainColor;
+     color: $mainColor;
+     position: relative;
+     z-index: 50;
+     border-bottom: 1px solid #4d4d4d;
+   }
+
+   &__selected:hover {
+     color: rgb(255, 161, 50);
+   }
+
+   &__selected-active {
+     padding:10px 35px;
+     background-color:$mainColor;
+     color: $bgMainColor;
+     position: relative;
+     z-index: 50;
+     border-bottom: 1px solid #4d4d4d;
+     box-shadow: 1px 1px 19px rgba(0, 0, 0, 0.98);
+   }
+
+
+   &__selected__ico {
+     display: inline-block;
+   }
+
+   &__selected__name {
+     display: inline-block;
+     padding-left: 10px;
+   }
+
+   &__option{
+     text-align: right;
+     color: $optionColor;
+     background-color: #333333;
+   }
+   &__option:hover{
+     background-color: #404040;
+   }
+
+   &__option__name {
+     padding: 15px 35px 15px 35px;
+   }
+
+
+   &__line {
+     width: 8px;
+     position: absolute;
+     background-color: $mainColor;;
+     top: 10px;
+     bottom: 15px;
+     right: 10px;
+     border-radius: 10px;
+     z-index: 1;
+   }
+
+   &__option-animaIn {
+     animation: showOptions 0.4s ease;
+     animation-fill-mode: forwards;
+   }
+
+ }
+
+
+
+/*                Animations
+*************************************************/
+
+ @keyframes showOptions{
+   0% {
+     opacity: 0;
+
+     transform: translateY(50px);
+   }
+   100% {
+     opacity: 1;
+     transform: translateY(0);
+   }
+ }
+
+@keyframes hideOptions{
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-140px);
+  }
+
+ }

@@ -1,0 +1,127 @@
+
+// Config
+@import '../../App.scss';
+
+
+
+/*    [ COMPONENT REACT    RUNLIST ]
+=========================================================================*/
+
+
+.Runlist {
+  user-select: none;
+  position: absolute;
+  bottom: 0;
+  top: 0px;
+  overflow-y: auto;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 71px 5px;
+  width: 20%;
+  background-color: #F1F1F1;//#333;
+  box-shadow: 2px 0 0 rgba(0,0,0,0.2);
+
+  &__item {
+    //text-transform: capitalize;
+    cursor: pointer;
+    box-sizing: border-box;
+    width: 100%;
+    list-style: none;
+    background-color: #525252;//#333;
+    height: 65px;
+    border-bottom: 1px solid #FFF;
+    padding: 5px;
+    font-family: 'PT Sans';
+    transition: .3s ease-out;
+    color:#FFF;
+
+    &.active-image {
+      background-color: $color_image;//#6EB205;
+      color: #FFF;
+      animation: ding .5s ease-out;
+    }
+
+    &.active-code {
+      background-color: $color_code;///#222268;
+      color: #FFF;
+      animation: ding .5s ease-out;
+    }
+    &.active-instructions {
+      background-color: $color_instruction; //#27BDFF;
+      color: #FFF;
+      animation: ding .5s ease-out;
+    }
+    &__blockImg {
+      float: left;
+      height: 53px;
+      width: 53px;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.33);
+      background-repeat: no-repeat;
+      background-size:80%;
+      background-position: center;
+
+      &-javascript {
+        background-image: url('/assets/img/icons/files/javascript.svg');
+      }
+
+      &-css {
+        background-image: url('/assets/img/icons/files/css.svg');
+      }
+
+      &-html {
+        background-image: url('/assets/img/icons/files/html.svg');
+      }
+
+      &-instructions {
+        background-image: url('/assets/img/icons/regions/instructions.svg');
+      }
+
+      &-image {
+        background-image: url('/assets/img/icons/regions/image.svg');
+      }
+
+
+    }
+    &__blockImg img{
+      width: 60%;
+      border-radius: 50%;
+      background-color: rgba(0, 0, 0, 0.33);
+      padding: 10px
+
+    }
+
+    &__blockType {
+      box-sizing: border-box;
+      padding-left: 5px;
+      float: left;
+      width: 50%;
+    }
+
+    &__blockType-title {
+      display: block;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    &__blockType-range {
+      display: block;
+      padding-top: 6px;
+      font-size: 12px;
+    }
+
+    &__blockTime{
+      text-align: right;
+      font-size: 13px;
+      float: left;
+      width: 30%;
+      line-height: 3;
+    }
+
+  }
+
+  &__item:hover {
+    opacity: 0.8;
+  }
+
+}

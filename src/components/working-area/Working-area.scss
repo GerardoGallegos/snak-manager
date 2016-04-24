@@ -1,0 +1,40 @@
+
+
+.WorkingArea {
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: rgb(236, 236, 236);
+
+  &-in {
+    animation: WorkingAreaIn .5s  ease-out;
+    animation-fill-mode: forwards;
+  }
+
+  &-out {
+    animation: WorkingAreaOut .5s  ease-out;
+    animation-fill-mode: forwards;
+    transform-style: preserve-3d;
+  }
+
+}
+
+@keyframes WorkingAreaIn {
+  0% {
+    right: 100%;
+  }
+  100% {
+    right: 0%;
+  }
+}
+
+@keyframes WorkingAreaOut {
+  0% {
+    right: 0%;
+  }
+  100% {
+    right: 100%;
+  }
+}
