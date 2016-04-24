@@ -5,8 +5,8 @@ import { createStore } from 'redux'
 import STORE from '../store/snak-store'
 
 
-import Preview from './preview/Preview'
-import WorkingArea from './working-area/Working-area'
+import Preview from './preview/Preview.jsx'
+import WorkingArea from './working-area/Working-area.jsx'
 
 
 

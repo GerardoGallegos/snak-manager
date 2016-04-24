@@ -2,11 +2,11 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 // Components
-import Topbar from './Topbar/Topbar'
+import Topbar from './Topbar/Topbar.jsx'
 import Wave from './Wave/Wave'
-import MediumBar from './Mediumbar/MediumBar'
-import Runlist from './Runlist/Runlist'
-import Tools from './Tools/Tools'
+import MediumBar from './Mediumbar/MediumBar.jsx'
+import Runlist from './Runlist/Runlist.jsx'
+import Tools from './Tools/Tools.jsx'
 
 import './Working-area.scss'
 

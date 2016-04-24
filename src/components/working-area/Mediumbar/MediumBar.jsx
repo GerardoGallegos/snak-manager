@@ -2,14 +2,14 @@ import React, { Component, PropTypes } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 
-import styles from './MediumBar.scss'
+import './MediumBar.scss'
 
 
 class Mediumbar extends Component {
 
-  // constructor(props) {
-  //   super(props)
-  // }
+  constructor(props) {
+    super(props)
+  }
 
   render() {
     const CLASES = this.props.regionType ? `MediumBar MediumBar-${this.props.regionType}`: 'MediumBar'

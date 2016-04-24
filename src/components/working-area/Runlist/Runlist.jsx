@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
-import RunlistItem from './Runlist-item'
+import RunlistItem from './Runlist-item.jsx'
 
 import styles from './Runlist.scss'
 
