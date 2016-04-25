@@ -21,21 +21,27 @@ export function zoomWave (state, action) {
 
 
 export function audioProgress(state, action) {
-  let dotPos = String(action.time).search(/\./g)
-  let time = parseFloat(String(action.time).substring(0, dotPos + 1))
+  const dotPos = String(action.time).search(/\./g)
+  const time = parseFloat(String(action.time).substring(0, dotPos + 1))
 
   // Hours, minutes and seconds
-  let hrs = ~~(time / 3600)
-  let mins = ~~((time % 3600) / 60)
-  let secs = time % 60
+  const hrs = ~~(time / 3600)
+  const mins = ~~((time % 3600) / 60)
+  const secs = time % 60
+
+  // Filled to format time
+  const filledMin = mins <60 ? '0' : ''
+  const filledSec = secs <60 ? '0' : ''
 
   // return the format time such as 00:00:00
-  let getTimeFormat = () => {
-    return `${mins}:${secs}`
+  const getTimeFormat = () => {
+    return `${filledMin}${mins}:${filledSec}${secs}`
   }
 
-  let STATE = Object.assign({}, state, {
-    time : getTimeFormat()
+  const STATE = Object.assign({}, state, {
+    wave : {
+      time : getTimeFormat()
+    }
   })
   return STATE
 }

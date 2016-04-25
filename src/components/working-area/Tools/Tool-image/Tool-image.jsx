@@ -49,4 +49,4 @@ function mapStateToProps(state, props) {
   }
 }
 
-export default connect(mapStateToProps)(ToolImage);
+export default connect(mapStateToProps)(ToolImage)

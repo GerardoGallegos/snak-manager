@@ -11,9 +11,9 @@ export function addImage(state, action) {
   for(let i=0; i<STATE.runList.length; i++) {
     if(STATE.runList[i].regionId === action.regionData.regionId) {
       // Elemento activo
-      //STATE.runList[i].active = true
-      //action.regionData.type
-      console.log('FILE', action.objData[0])
+      // STATE.runList[i].active = true
+      // action.regionData.type
+      // console.log('FILE', action.objData[0])
       STATE.runList[i]['image'] = {
         file :  action.objData[0]
       }

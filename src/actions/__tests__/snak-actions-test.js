@@ -55,13 +55,11 @@ const REGION_TEST = {
       'body': 'Buny text'
     },
     'active': true
-  },
-
-
+  }
 }
 
 
-describe('Component <WorkingArea />', () => {
+describe('Action Creators snak-actions', () => {
 
   it('Should create an action type AUDIO_PROGRESS' , () => {
     expect(audioProgress(33)).toEqual({
