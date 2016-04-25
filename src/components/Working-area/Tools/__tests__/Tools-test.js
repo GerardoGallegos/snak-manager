@@ -44,18 +44,18 @@ describe('Component <Tools />', () => {
       'active': true
     }
 
-  const REGION_DATA_FAKE_2 = {
-    'type': 'image',
-    'from': 21.197037535271342,
-    'to': 26.197037535271342,
-    'regionId': 'k27ri91',
-    'image': {
-      'file': {
-        'preview': 'blob:http%3A//localhost%3A3000/72286512-9d9b-4b80-9795-4790fe7b6c8d'
-      }
-    },
-    'active': true
-  }
+    const REGION_DATA_FAKE_2 = {
+      'type': 'image',
+      'from': 21.197037535271342,
+      'to': 26.197037535271342,
+      'regionId': 'k27ri91',
+      'image': {
+        'file': {
+          'preview': 'blob:http%3A//localhost%3A3000/72286512-9d9b-4b80-9795-4790fe7b6c8d'
+        }
+      },
+      'active': true
+    }
 
     tool_componentConnect.props().store.dispatch(addRegion(REGION_DATA_FAKE_1))
     tool_componentConnect.props().store.dispatch(addRegion(REGION_DATA_FAKE_2))

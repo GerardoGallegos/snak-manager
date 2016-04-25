@@ -41,4 +41,5 @@ function mapStateToProps(state, props) {
   }
 }
 
+export { WorkingArea }
 export default connect(mapStateToProps)(WorkingArea)
