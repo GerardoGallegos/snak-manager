@@ -41,10 +41,11 @@ class Wave extends Component {
   }
 }
 
-let mapStateToProps = (state, props)=> {
+const mapStateToProps = (state, props)=> {
   return {
     state : state.snak
   }
 }
 
+export { Wave }
 export default connect(mapStateToProps)(Wave)

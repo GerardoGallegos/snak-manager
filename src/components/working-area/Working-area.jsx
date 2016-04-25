@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 // Components
 import Topbar from './Topbar/Topbar.jsx'
-import Wave from './Wave/Wave'
+import Wave from './Wave/Wave.jsx'
 import MediumBar from './Mediumbar/MediumBar.jsx'
 import Runlist from './Runlist/Runlist.jsx'
 import Tools from './Tools/Tools.jsx'
