@@ -27,7 +27,8 @@
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react",
       "<rootDir>/node_modules/react-dom",
-      "<rootDir>/node_modules/react-addons-test-utils"
+      "<rootDir>/node_modules/react-addons-test-utils",
+      "enzyme"
     ]
   },
   "license": "MIT",
@@ -42,6 +43,7 @@
     "babel-preset-react": "^6.5.0",
     "brace": "^0.8.0",
     "css-loader": "^0.23.1",
+    "enzyme": "^2.2.0",
     "eslint": "^2.8.0",
     "eslint-plugin-react": "^5.0.1",
     "hamsterjs": "^1.1.2",

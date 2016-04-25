@@ -26,4 +26,5 @@ function mapStateToProps(state, props) {
   }
 }
 
+export { Mediumbar }
 export default connect(mapStateToProps)(Mediumbar)

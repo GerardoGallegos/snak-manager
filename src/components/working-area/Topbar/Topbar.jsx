@@ -6,7 +6,7 @@ import STORE from '../../../store/snak-store'
 import {  showPreview, changeSyntax } from '../../../actions/snak-actions'
 import { optionsCode, optionsImage } from './tools-config'
 
-import RockSelect from '../../commons/RockSelect'
+import RockSelect from '../../Commons/RockSelect'
 
 import styles from './Topbar.scss'
 

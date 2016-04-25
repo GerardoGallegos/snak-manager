@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { render } from 'react-dom'
+//import { render } from 'react-dom'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+// import { createStore } from 'redux'
 import STORE from '../store/snak-store'
 
 
-import Preview from './preview/Preview.jsx'
-import WorkingArea from './working-area/Working-area.jsx'
+import Preview from './Preview/Preview.jsx'
+import WorkingArea from './Working-area/Working-area.jsx'
 
 
 
