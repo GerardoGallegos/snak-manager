@@ -28,7 +28,7 @@ class Tools extends Component {
             return <ToolText / >
 
           default:
-            return <h1 > No component for this tool < /h1>
+            return <h1 >No Tool for this regionType< /h1>
       }
     }
 
@@ -45,4 +45,5 @@ function mapStateToProps (state, props) {
   }
 }
 
+export { Tools }
 export default connect(mapStateToProps)(Tools)
