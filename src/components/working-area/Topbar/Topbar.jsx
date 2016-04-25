@@ -135,4 +135,5 @@ function mapStateToProps(state, props) {
   }
 }
 
+export { Topbar }
 export default connect(mapStateToProps)(Topbar)
