@@ -61,11 +61,11 @@ export function changeSyntax(regionData, textSyntax) {
 
 // IMAGES ACTIONS
 
-export function addImage(regionData, objData) {
+export function addImage(regionData, file) {
   return {
     type: 'ADD_IMAGE',
     regionData : regionData,
-    objData : objData
+    objData : file
   }
 }
 
