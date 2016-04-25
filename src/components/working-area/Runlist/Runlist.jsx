@@ -27,4 +27,5 @@ let mapStateToProps = (state, props)=> {
   }
 }
 
+export { Runlist }
 export default connect(mapStateToProps)(Runlist)

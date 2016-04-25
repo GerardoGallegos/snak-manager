@@ -10,7 +10,7 @@ import { clickRegion, addRegion } from '../../../../actions/snak-actions'
 
 describe('Component <Topbar />', () => {
 
-  let connectTopbar
+  let topbar_componentConnect
 
   beforeEach(()=> {
     topbar_componentConnect = mount(
@@ -20,8 +20,12 @@ describe('Component <Topbar />', () => {
 
   it('Render Component' , () => {
     expect(topbar_componentConnect.hasClass('Topbar'))
+  })
+
+  it('Initial State', ()=>{
     expect(topbar_componentConnect.props().store.getState().snak.regionInFocus.type).toEqual('default')
-    expect(topbar_componentConnect.props().store.getState().snak.regionInFocus.zoom).toEqual(38)
+    expect(topbar_componentConnect.props().store.getState().snak.wave.zoom).toEqual(38)
+    expect(topbar_componentConnect.props().store.getState().snak.runList).toEqual([])
   })
 
 })
