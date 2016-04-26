@@ -4,7 +4,6 @@ export function addImage(state, action) {
 
   const STATE = Object.assign({}, state)
 
-  console.log(action.objData[0])
   // Iterates in the Array to search the regionId position
   for(let i=0; i<STATE.runList.length; i++) {
     if(STATE.runList[i].regionId === action.regionData.regionId) {

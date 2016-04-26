@@ -21,10 +21,7 @@ class Wave extends Component {
   }
 
   componentDidMount () {
-
-    setTimeout(()=>{
-      this.WS = WaveSurfer(this.props.state.wave._id)
-    },100)
+    this.WS = WaveSurfer(this.props.state.wave._id)
 
     Mousetrap.bind('space', this.playPause.bind(this))
     Mousetrap.bind('i i i', this.addNewRegion.bind(this, 'image'))

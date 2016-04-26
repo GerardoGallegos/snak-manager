@@ -15,7 +15,7 @@ const INITIALSTATE = {
     preview : false
   },
   wave : {
-    _id : uid(12),
+    _id : 'wave_' + uid(12),
     zoom : 38,
     time : '00:00',
   },
