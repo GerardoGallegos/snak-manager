@@ -1,10 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import Trik from '../Trik/Trik.jsx'
 
-import {
-  showWorkingArea
-} from '../../actions/snak-actions'
+
+import { showWorkingArea } from '../../actions/snak-actions'
 
 export default class Preview extends React.Component {
 
@@ -23,10 +23,7 @@ export default class Preview extends React.Component {
     const _state = JSON.stringify(this.props.state, undefined, 2)
 
     return (
-      <div className = "preview" >
-        <button onClick = { this.click } > Show Working Area </button>
-        <pre className = "preview__json" > { _state } < /pre>
-      </div>
+      <Trik audioSource='/assets/audio/audio_test_01.mp3' />
     )
   }
 }
@@ -38,3 +35,14 @@ function mapStateToProps(state, props) {
 }
 
 export default connect(mapStateToProps)(Preview)
+
+
+
+/*
+
+<div className = "preview" >
+  <button onClick = { this.click } > Show Working Area </button>
+  <pre className = "preview__json" > { _state } < /pre>
+</div>
+
+*/

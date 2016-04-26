@@ -35,7 +35,7 @@ class ToolText extends Component {
     setTimeout(()=>{
       const txt = document.getElementById(_ID)
       this.moveCursorToEnd(txt)
-    }, 10)
+    }, 1)
 
     return (
       <div className="Tools__panel-instructions">

@@ -8,7 +8,7 @@ import { optionsCode, optionsImage } from './tools-config'
 
 import RockSelect from '../../Commons/RockSelect'
 
-import styles from './Topbar.scss'
+import './Topbar.scss'
 
 
 class Topbar extends Component {
@@ -68,11 +68,9 @@ class Topbar extends Component {
     const TYPE = this.props.state.regionInFocus.type
 
     switch (TYPE) {
-      case 'code':
-        //const CLASS = "ToolsPanel slideTop-in"
-        console.log(this.props.state.regionInFocus.code.fileType)
-        return (
-          <div className="ToolsPanel slideTop-in">
+    case 'code':
+      return (
+        <div className="ToolsPanel slideTop-in">
               <RockSelect
                   defaultValue ={this.props.state.regionInFocus.code.fileType}
                   iconClass="icon-code"
@@ -80,11 +78,11 @@ class Topbar extends Component {
                   generalClick={(syntax)=>{this.changeCodeSyntax(syntax)}}
               />
           </div>
-        )
-        break
+      )
+      break
 
-      case 'image':
-        return (
+    case 'image':
+      return (
           <div className="ToolsPanel slideTop-in">
               <RockSelect
                   defaultValue = 'Effects'
@@ -105,13 +103,18 @@ class Topbar extends Component {
                   generalClick={(syntax)=>{console.log(syntax)}}
               />
           </div>
-          )
-          break
-      default:
+        )
+      break
     }
   }
 
   render() {
+    // Button styles only for prototyping
+    const buttonStyle = {
+      position : 'absolute',
+      top : '2px',
+      'z-index' : '1000'
+    }
 
     return(
       <div className="Topbar">

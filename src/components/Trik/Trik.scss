@@ -1,0 +1,250 @@
+.image {
+  height: 80vh;
+  position: absolute;
+  z-index: -1;
+  height: 80vh;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: .6s cubic-bezier(0, 0.28, 0.57, 1.46) imageIn;
+}
+
+
+.Code-panel {
+  color: #FFF;
+  display: block;
+  width: 50%;
+  padding-bottom: 20px;
+  height: 400px;
+  margin: 5% auto;
+  background-color: rgb(35, 37, 34);
+  border-radius: 10px 10px 5px 5px;
+  box-shadow: 0px 14px 50px rgba(0, 0, 0, 0.2);
+
+  &__code {
+    color: #00E2FF;
+    padding: 15px;
+    font-size: 20px;
+  }
+
+  &__top {
+    width: 100%;
+    height: 44px;
+    background-color: #959595;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.5);
+
+    &__fileName {
+      display: block;
+      width: 101%;
+      text-align: center;
+      line-height: 2;
+      font-size: 20px;
+      text-shadow: 0px 1px 5px rgba(0, 0, 0, .5);
+    }
+  }
+}
+
+.boxInstructions {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  perspective: 400px;
+}
+
+.instructions{
+  position: relative;
+  display: block;
+  margin: 0 auto;
+  font-size: 500%;
+  color: #454545;
+  font-family: arial;
+  text-align: center;
+}
+
+/**  TEST ANIMATIONS
+***********************************************/
+.slideTopIn {
+  animation: .6s ease slideTopIn;
+}
+
+.zoomIn {
+  animation: .6s ease zoomIn;
+}
+
+.rotateIn {
+  animation: .6s ease rotateIn;
+}
+
+.rotate3DIn {
+  animation: .6s ease rotate3DIn;
+}
+
+.Seconds {
+  font-size: 50px;
+  position: absolute;
+  top: 5%;
+  left: 10px;
+  opacity: 0.3;
+}
+
+.progress{
+  position: absolute;
+  top: 0;
+  height: 10px;
+  background-color: #CCC;
+  width: 100%;
+  cursor: pointer;
+  &__bar {
+    position: relative;
+    height: 100%;
+    width: 20%;
+    background-color: #E91E63;// #00BCD4;//#43B912;//rgb(255, 0, 115);
+    -webkit-transition-delay: 1s; /* Safari */
+    transition-delay: 1s;
+    transition: .3s ease-out;
+
+    &__picker {
+      position: absolute;
+      right: 0;
+      width: 50px;
+      height: 100%;
+      background-color: transparent;
+    }
+    &__picker:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+@keyframes slideTopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: scale(2);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rotateIn {
+  0% {
+    opacity: 0;
+    transform: rotate(20deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes rotate3DIn {
+  0% {
+    opacity: 0;
+    transform: rotateY(71deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotateY(0deg);
+  }
+}
+
+@keyframes imageIn {
+  0% {
+    opacity: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(.1);
+    // transform: scale(.1);
+  }
+  100% {
+    opacity: 1;
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    // transform: scale(.1);
+    // transform: scale(1);
+  }
+}
+
+.PlayButton {
+  cursor: pointer;
+  position: relative;
+  z-index: 999;
+  width: 100px;
+  height: 100px;
+  opacity: 0.1;
+  float: right;
+  margin: 20px;
+}
+
+
+.PlayButton__play {
+  background: url('/assets/img/trik/play.svg')
+}
+
+.PlayButton__pause {
+  background: url('/assets/img/trik/pause.svg')
+}
+
+
+
+
+.Minimap {
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  width: 150px;
+  height: 105px;
+  background-color: #FFF;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.4);
+  border: 2px solid #FFF;
+
+  &__timer{
+    padding: 3px 8px;
+    font-size: 13px;
+    border-radius: 3px;
+    position: absolute;
+    bottom: 0;
+    left: 35%;
+    background-color: rgba(0, 0, 0, 0.44);
+    color: #FFF;
+  }
+
+  &__instructions {
+    word-wrap: break-word;
+    width: 100%;
+    text-align: center;
+    color: rgb(76, 175, 80);
+    left: 50%;
+    position: absolute;
+    top:50%;
+    font-size: 12px;
+    transform: translateY(-50%) translateX(-50%);
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+  }
+  &__code {
+    width: 100%;
+    height: 100%;
+    background: url("/assets/img/trik/code.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+}
