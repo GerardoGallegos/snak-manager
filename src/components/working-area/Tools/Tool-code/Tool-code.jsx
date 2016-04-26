@@ -13,27 +13,18 @@ import 'brace/theme/monokai'
 
 import { updateCode, changeSyntax } from '../../../../actions/snak-actions'
 
-//import Selectlist from '../Selectlist'
-
 class ToolCode extends Component {
   constructor(props){
     super(props)
     this.onChangeCode = this.onChangeCode.bind(this)
-    //this.typeSyntax = 'javascript'
-  //  this.updateSyntax = this.updateSyntax.bind(this)
   }
 
   onChangeCode(newCodeValue){
     this.props.dispatch(updateCode(this.props.state.regionInFocus, {
       body : newCodeValue,
-      fileType : this.props.state.regionInFocus.code.fileType //this.typeSyntax
+      fileType : this.props.state.regionInFocus.code.fileType
     }))
   }
-
-  // updateSyntax(e) {            "fileType": "css"
-  //   this.typeSyntax = e.target.value
-  //   this.props.dispatch(changeSyntax(this.props.state.regionInFocus, e.target.value))
-  // }
 
   render() {
 
@@ -62,7 +53,6 @@ class ToolCode extends Component {
   }
 }
 
-//mode={this.props.state.regionInFocus.code.fileType}
 function mapStateToProps(state, props) {
   return {
     state : state.snak

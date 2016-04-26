@@ -3,22 +3,26 @@ import { getBodyObj } from '../util/util'
 export function updateCode(state, action) {
 
   const STATE = Object.assign({}, state)
-  const BODYOBJ = getBodyObj(action.objData.body) //objData.body
+  const BODYOBJ = getBodyObj(action.objData.body)
 
-  // Iteramos en la lista para buscar posicion de regionId
+  // Iterates in the Array to search the regionId position
   for(let i=0; i<STATE.runList.length; i++) {
     if(STATE.runList[i].regionId === action.regionData.regionId) {
-      // Elemento activo
+      // Active Item
       STATE.runList[i].active = true
-
-      //action.regionData.type
+      // Update Region code
+      //  Examples
+      // "fileName": "script.js",
+      // "text": "var name"
+      // "body": "/// script.js\n\nvar name"
+      // "fileType": "javascript"
       STATE.runList[i]['code'] = {
-        title : BODYOBJ.title,
+        fileName : BODYOBJ.title,
         text : BODYOBJ.body,
         body : action.objData.body,
         fileType : action.objData.fileType
       }
-      // Actualizo elemento en foco [ BUGG ]
+      // Update regionInFocus
       STATE.regionInFocus = STATE.runList[i]
     }
   }
@@ -28,27 +32,23 @@ export function updateCode(state, action) {
 
 
 
-
-
-
 export function changeSyntax(state, action) {
 
   const STATE = Object.assign({}, state)
 
-  // Iteramos en la lista para buscar posicion de regionId
+  // Iterates in the Array to search the regionId position
   for(let i=0; i<STATE.runList.length; i++) {
     if(STATE.runList[i].regionId === action.regionData.regionId) {
-      // Elemento activo
+      // Active item
       STATE.runList[i].active = true
-      //console.log(STATE.runList[i]['code'])
-      //action.regionData.type
+      // Update Syntax
       STATE.runList[i]['code'] = {
         title : STATE.runList[i]['code'].title,
         text : STATE.runList[i]['code'].text,
         body : STATE.runList[i]['code'].body,
         fileType : action.textSyntax
       }
-      // Actualizo elemento en foco [ BUGG ]
+      // Update regionInFocus
       STATE.regionInFocus = STATE.runList[i]
     }
   }
