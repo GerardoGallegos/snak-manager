@@ -19,7 +19,7 @@ export default class RunlistItem extends Component {
     const ITEM = this.props.data
     let type = ITEM.type
     let fileTypeClass = ITEM.code  ? `Runlist__item__blockImg Runlist__item__blockImg-${ITEM.code.fileType}` : `Runlist__item__blockImg Runlist__item__blockImg-${ITEM.type}`
-    let fileName = ITEM.code ? ITEM.code.title : ITEM.type
+    let fileName = ITEM.code ? ITEM.code.fileName : ITEM.type
     let from = Math.round( ITEM.from )
     let to = Math.round( ITEM.to )
     let time = to - from
