@@ -3,20 +3,18 @@ import { getBodyObj } from '../util/util'
 export function updateInstruction(state, action) {
 
   const STATE = Object.assign({}, state)
-  const BODYOBJ = getBodyObj(action.text)
+  const TEXT = action.text
 
-  // Iteramos en la lista para buscar posicion de regionId
+  // Iterates in the Array to search the regionId position
   for(let i=0; i<STATE.runList.length; i++) {
     if(STATE.runList[i].regionId === action.regionData.regionId) {
-      // Elemento activo
+      // Active Item
       STATE.runList[i].active = true
-      //action.regionData.type
+      // Update text in instructions
       STATE.runList[i]['instructions'] = {
-        title : BODYOBJ.title,
-        text : BODYOBJ.body,
-        body : action.text
+        text : TEXT
       }
-      // Actualizo elemento en foco [ BUGG ]
+      // Update regionInFocus
       STATE.regionInFocus = STATE.runList[i]
 
     }

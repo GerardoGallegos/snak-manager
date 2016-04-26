@@ -1,10 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-
 import { updateInstruction } from '../../../../actions/snak-actions'
-//import storage from '../../../store/snak-store'
-
-//import Selectlist from '../../Selectlist'
 
 
 
@@ -21,51 +17,29 @@ class ToolText extends Component {
 
   moveCursorToEnd(el) {
     el.focus()
-    // if (typeof el.selectionStart == "number") {
-    //   el.selectionStart = el.selectionEnd = el.value.length;
-    // } else if (typeof el.createTextRange != "undefined") {
-    //   el.focus();
-    //   var range = el.createTextRange();
-    //   range.collapse(false);
-    //   range.select();
-    // }
+    if (typeof el.selectionStart == 'number') {
+      el.selectionStart = el.selectionEnd = el.value.length
+    } else if (typeof el.createTextRange != 'undefined') {
+      el.focus()
+      var range = el.createTextRange()
+      range.collapse(false)
+      range.select()
+    }
   }
 
   render() {
-    let objectData = this.props.state.regionInFocus ?  this.props.state.regionInFocus : {}
-    let body = this.props.state.regionInFocus.instructions.body ? this.props.state.regionInFocus.instructions.body : ''
-    let _id = `textarea-${objectData.regionId}`
+    const REGION_IN_FOCUS = this.props.state.regionInFocus ?  this.props.state.regionInFocus : {}
+    const TEXT = this.props.state.regionInFocus.instructions.text ? this.props.state.regionInFocus.instructions.text : ''
+    const _ID = `textarea-${REGION_IN_FOCUS.regionId}`
+
     setTimeout(()=>{
-      let txt = document.getElementById(_id)
-      //txt.focus()
+      const txt = document.getElementById(_ID)
       this.moveCursorToEnd(txt)
-    }, 100)
+    }, 10)
 
-    const EFFECTS = [
-      'Typing',
-      'BounseIn',
-      'Zoom3d'
-    ]
-
-    const SPEED = [
-      'Slow',
-      'Medium',
-      'Fast'
-    ]
-
-    const SIZE = [
-      'Small',
-      'Medium',
-      'Big'
-    ]
-    /*
-
-
-    */
     return (
-
       <div className="Tools__panel-instructions">
-        <textarea id={_id} value={body}  onChange={ this.onChangeText }></textarea>
+        <textarea id={ _ID } value={ TEXT }  onChange={ this.onChangeText }></textarea>
       </div>
     )
   }
@@ -77,4 +51,4 @@ function mapStateToProps(state, props) {
   }
 }
 
-export default connect(mapStateToProps)(ToolText);
+export default connect(mapStateToProps)(ToolText)
