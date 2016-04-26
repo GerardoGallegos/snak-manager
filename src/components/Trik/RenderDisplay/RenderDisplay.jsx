@@ -37,13 +37,8 @@ class RenderDisplay extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if(this.props.state.regionInFocus.type === 'instructions') {
-      this.renderModule(nextProps.showNow)
-    }
-
-    if(nextProps.showNow !== this.props.showNow) {
-      this.renderModule(nextProps.showNow)
-    }
+    // Update the renderModule in every Change
+    this.renderModule(nextProps.showNow)
   }
 
   render() {
