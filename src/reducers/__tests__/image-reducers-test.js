@@ -14,12 +14,26 @@ describe('Reducers', ()=>{
     // Add Regions code
     STORE.dispatch(ACTIONS.addRegion(REGION_TEST.IMAGE))
 
-    const FAKE_IMG_ARR = ['file']
+    const FAKE_IMG_ARR = [
+      {
+        preview : 'bloob:fake',
+        size : '2005',
+        type : 'image/jpeg'
+      }
+    ]
+
+    const IMG_DATA_EXPECT = {
+      source : 'bloob:fake',
+      size : '2005',
+      type : 'image/jpeg'
+    }
+
     // Add Image
     STORE.dispatch(ACTIONS.addImage(REGION_TEST.IMAGE, FAKE_IMG_ARR))
     // expect
     expect(STORE.getState().snak.runList.length).toEqual(1)
-    expect(STORE.getState().snak.runList[0].image.file).toEqual('file')
+    expect(STORE.getState().snak.runList[0].image.source).toEqual('bloob:fake')
+    expect(STORE.getState().snak.runList[0].image).toEqual(IMG_DATA_EXPECT)
   })
 
 })

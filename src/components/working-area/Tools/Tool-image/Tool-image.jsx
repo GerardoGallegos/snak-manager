@@ -14,23 +14,14 @@ class ToolImage extends Component {
   }
 
   onDrop(file) {
-    console.log(file)
     this.props.dispatch(addImage(this.props.state.regionInFocus, file))
-    //console.log('Received files: ', file);
-    //console.log(this.props.state.regionInFocus)
   }
 
   render() {
+    const STYLE_PREVIEW = this.props.state.regionInFocus.image.source ? {display: 'block'} : {display: 'none'}
+    const CLASS_DROPZONE = this.props.state.regionInFocus.image.source ? 'Tools__panel-image__dropzone Tools__panel-image__dropzone-inactive' : 'Tools__panel-image__dropzone'
 
-    const SIZE = [
-      'Small',
-      'Medium',
-      'Big'
-    ]
-    const STYLE_PREVIEW = this.props.state.regionInFocus.image.file.preview ? {display: 'block'} : {display: 'none'}
-    const CLASS_DROPZONE = this.props.state.regionInFocus.image.file.preview ? 'Tools__panel-image__dropzone Tools__panel-image__dropzone-inactive' : 'Tools__panel-image__dropzone'
-
-    const PREVIEW = this.props.state.regionInFocus.image.file.preview ? this.props.state.regionInFocus.image.file.preview : this.props.state.regionInFocus.image.file
+    const PREVIEW = this.props.state.regionInFocus.image.source ? this.props.state.regionInFocus.image.source : this.props.state.regionInFocus.image.file
     return (
       <div className="Tools__panel-image facewin">
           <Dropzone multiple={false} className={CLASS_DROPZONE} onDrop={this.onDrop}>
