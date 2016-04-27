@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom'
 
 import Minimap from '../Minimap/Minimap.jsx'
 
-
+// styles
+import './ProgressBar.scss'
 
 class ProgressBar extends Component {
   constructor(props) {
