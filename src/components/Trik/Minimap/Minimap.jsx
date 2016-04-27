@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import formatTime from '../util/formatTime'
 
+// styles
+import './Minimap.scss'
 
 
 class Minimap extends Component {
