@@ -70,11 +70,8 @@ export function addImage(regionData, file) {
 }
 
 
-
-
-
 /*  PREVIEW WORKING AREA
-**********************/
+*********************************/
 export function showPreview() {
   return {
     type: 'SHOW_PREVIEW'
@@ -84,5 +81,51 @@ export function showPreview() {
 export function showWorkingArea() {
   return {
     type: 'SHOW_WORKING_AREA'
+  }
+}
+
+
+
+/*   TRIK
+*******************************/
+export function setProgressBar(progress) {
+  return {
+    type: 'SET_PROGRESS_BAR',
+    progress : progress
+  }
+}
+
+export function setTime(time) {
+  return {
+    type: 'SET_TIME',
+    time : time
+  }
+}
+
+export function setDuration(num) {
+  return {
+    type: 'SET_DURATION',
+    duration : num
+  }
+}
+
+export function showMinimap(bool) {
+  return {
+    type: 'SHOW_MINIMAP',
+    show : bool
+  }
+}
+
+export function setPosX(num) {
+  return {
+    type: 'SET_POSX',
+    posX : num
+  }
+}
+
+export function setAudioStatus(audioStatus) {
+  return {
+    type: 'SET_AUDIO_STATUS',
+    audioStatus : audioStatus
   }
 }

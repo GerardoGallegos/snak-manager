@@ -25,7 +25,7 @@ export default function (id) {
     height: 100
   })
 
-  WAVESURFER.load('/assets/audio/audio_test_01.mp3')
+  WAVESURFER.load(storage.getState().snak.wave.audioSource)
 
   WAVESURFER.on('audioprocess', (time) => {
     timer.textContent = String(time).substring(0,5)

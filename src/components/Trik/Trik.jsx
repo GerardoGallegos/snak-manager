@@ -1,8 +1,7 @@
-
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-// Actions
-import { showWorkingArea } from '../../actions/snak-actions'
+import ReactDOM from 'react-dom'
+
 // Styles
 import './Trik.scss'
 // Components
@@ -11,8 +10,13 @@ import PlayButton from './PlayButton/PlayButton.jsx'
 import RenderDisplay from './RenderDisplay/RenderDisplay.jsx'
 // utils
 import formatTime from './util/formatTime'
-
-
+// Actions
+import {
+   showWorkingArea,
+   setDuration,
+   setTime, setProgressBar,
+   setAudioStatus
+} from '../../actions/snak-actions'
 
 
 
@@ -23,16 +27,14 @@ class Trik extends Component {
     this.time = 0
     this.tick = null
     this.audio = null
-    this.audio_status = 'pause'
-    this.duration = 100
     this.SHOW_NOW = null
 
     const METHODS = [
       'tickPlay',
       'thickPause',
       'work',
-      'updateTime',
-      'click'
+      'showWorkingArea',
+      'changeTime'
 
     ].forEach((method)=>{
       this[method] = this[method].bind(this)
@@ -41,10 +43,28 @@ class Trik extends Component {
 
   componentDidMount() {
     this.DATA = this.props.state.runList
-    this.audio = document.getElementById('audio')
+    this.audio = ReactDOM.findDOMNode(this.refs.audio)
+    this.time = this.props.state.trik.time
+
+    setTimeout(()=>{
+      this.props.dispatch(setDuration(this.audio.duration))
+    }, 100)
   }
 
-  click() {
+  componentWillReceiveProps(nextProps) {
+    // Change time
+    if(nextProps.state.trik.time !== this.time) {
+      this.time = nextProps.state.trik.time
+      this.work()
+    }
+
+  }
+
+  changeTime(){
+    this.audio.currentTime = this.props.state.trik.time
+  }
+
+  showWorkingArea() {
     this.props.dispatch(showWorkingArea())
   }
 
@@ -58,40 +78,31 @@ class Trik extends Component {
           this.SHOW_NOW = this.DATA[i]
           // RenderDisplay Blocking
           this.thickPause()
-          this.forceUpdate()
           i = this.DATA.length
         }
         // No Blocking
         else {
           this.SHOW_NOW = this.DATA[i]
           // RenderDisplay
-          this.forceUpdate()
           i = this.DATA.length
         }
       }
       else {
         // RenderDisplay Empty
         this.SHOW_NOW = {}
-        this.forceUpdate()
       }
     }
   }
 
-  updateTime(t) {
-    this.time = Math.round(t)
-    this.audio.currentTime = Math.round(t)
-    this.work()
-    this.forceUpdate()
-  }
 
   tickPlay(){
-    this.audio_status = 'play'
+    this.props.dispatch(setAudioStatus('play'))
     if(this.tick === null){
       this.audio.play()
-
-      this.duration = this.audio.duration
       this.tick = setInterval(()=>{
         this.time ++
+        this.props.dispatch(setTime(this.time))
+        this.props.dispatch(setProgressBar( (this.time * 100)/ this.props.state.trik.duration ) )
         this.work()
       }, 1000)
     }
@@ -101,28 +112,22 @@ class Trik extends Component {
     clearInterval(this.tick)
     this.tick = null
     this.audio.pause()
-    this.audio_status = 'pause'
+    this.props.dispatch(setAudioStatus('pause'))
     this.forceUpdate()
   }
 
 
   render() {
-    const  PROGRESS = (this.duration / 100) * this.time
-
     return(
       <div>
-
         <span className="Seconds">{ formatTime(this.time) }</span>
-        <PlayButton play={this.tickPlay} stop={this.thickPause} audioStatus={this.audio_status} />
-        <audio id="audio">
-          <source src={this.props.audioSource} type="audio/mp3" />
+        <PlayButton play={ this.tickPlay } stop={ this.thickPause } />
+        <audio ref="audio">
+          <source src={ this.props.audioSource } type="audio/mp3" />
         </audio>
         <RenderDisplay showNow={ this.SHOW_NOW } />
-        <ProgressBar progress={PROGRESS} time={this.time} updateTime={this.updateTime}/>
-        <button onClick={this.click} style={ {
-          'position': 'absolute',
-          'bottom': 0
-        }}>WorkingArea</button>
+        <ProgressBar changeTime={ this.changeTime }/>
+        <button onClick={ this.showWorkingArea } style={ {'position': 'absolute', 'bottom': 0 }}>WorkingArea</button>
       </div>
     )
   }
