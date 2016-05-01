@@ -7,7 +7,7 @@ import './Code.scss'
 
 // Editor ACE
 import brace from 'brace'
-import AceEditor from 'react-ace'
+import AceEditor from './react-ace.jsx'
 import 'brace/mode/javascript'
 import 'brace/mode/css'
 import 'brace/mode/html'
