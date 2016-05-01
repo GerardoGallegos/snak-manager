@@ -1,23 +1,46 @@
 
 body {
-      overflow: hidden;
+  overflow: hidden;
 }
 
+$green : #7fc719;
+
+/* General Styles
+*******************************/
+.color {
+  &-javascript {
+    color: yellow;
+  }
+
+  &-css {
+    color: #03A9F4;
+  }
+
+  &-html {
+    color: orange;
+  }
+}
+
+
 .BlackBox {
-  width : 15%;
+  width : 230px;
   height: 100%;
   position : absolute;
-  left : -30%;
+  left : 0%;
   top: 0;
   background-color: #1C1D22;
   color : rgb(0, 212, 140);
   font-size: 9px;
   transition: .4s ease-out;
 
+  &__show {
+    left : 0%;
+  }
+
   &__dropZone {
     position: relative;
     width: 90%;
-    height: 45%;
+    height: 30%;
     margin: 20% auto;
     border: 3px dashed #CCC;
     z-index: 999;
@@ -28,8 +51,8 @@ body {
     }
 
     &__ball {
-      width: 180px;
-      height: 180px;
+      width: 150px;
+      height: 150px;
       padding: 10px;
       background: #CCC url('/assets/img/trik/code.svg') center no-repeat;
       background-size: 50%;
@@ -37,8 +60,9 @@ body {
       position: absolute;
       z-index:200;
       left: 14%;
-      top: 19%;
+      top: 10%;
 
+      // Ball active
       &-active {
         background: #CDDC39 url('/assets/img/trik/code.svg') center no-repeat;
         background-size: 50%;
@@ -48,20 +72,56 @@ body {
     }
   }
 
-  &__show {
-    left : 0%;
+  &__items {
+    overflow-y: auto;
+    list-style: none;
+    height: 60%;
+    padding: 0;
+    bottom: 2%;
+    position: absolute;
   }
-}
 
-@keyframes showVertical {
-  0% {
-
-    left: -10%;
+  &__item:hover{
+    background-color: rgb(62, 62, 62);
+    color: red;
   }
-  100% {
 
-    left: 0%;
+  &__item {
+    position: relative;
+    color: $green;
+    border: 1px solid #9E9E9E;
+    width: 80%;
+    height: 100px;
+    margin: 10px auto;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 5px;
+
+    &__type {
+      position: absolute;
+      right: 3px;
+      width: 20px;
+      height: 20px;
+      font-size: 15px;
+      text-align: center;
+      background-color: rgba(0, 0, 0, 0.74);
+      padding: 3px;
+      border-radius: 50%;
+    }
+
+    &__pre {
+      width: 100%;
+      white-space: pre;           /* CSS 2.0 */
+    	white-space: pre-wrap;      /* CSS 2.1 */
+    	white-space: pre-line;      /* CSS 3.0 */
+    	white-space: -pre-wrap;     /* Opera 4-6 */
+    	white-space: -o-pre-wrap;   /* Opera 7 */
+    	white-space: -moz-pre-wrap; /* Mozilla */
+    	white-space: -hp-pre-wrap;  /* HP Printers */
+    	word-wrap: break-word;      /* IE 5+ */
+    }
   }
+
 }
 
 

@@ -1,8 +1,17 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
+import uid from 'uid'
+
 // styles
 import './BlackBox.scss'
+// Components
+import BlackBoxItems from './BlackBox-items.jsx'
+// actions
+import {
+  addItemBlackBox,
+  deleteItemBlackBox
+} from '../../../actions/snak-actions'
 
 class BlackBox extends Component {
 
@@ -12,14 +21,15 @@ class BlackBox extends Component {
     const METHODS = [
       'handleDrop',
       'handleDropOver',
-      'handleDropLeave'
+      'handleDropLeave',
+      'getCodeInFocus'
     ]
 
     METHODS.forEach((method)=>{
       this[method] = this[method].bind(this)
     })
 
-    this.CONTENT_TEXT = ''
+    //this.CONTENT_TEXT = ''
     this.CLASES = {
       dropZone : 'BlackBox__dropZone',
       dropZoneBall : 'BlackBox__dropZone__ball'
@@ -44,9 +54,27 @@ class BlackBox extends Component {
     this.forceUpdate()
   }
 
+  getCodeInFocus() {
+    const RUNLIST = this.props.state.runList
+    const TIME = this.props.state.trik.time
+
+    for(let i = 0; i<RUNLIST.length; i++) {
+      if(TIME >= RUNLIST[i].from && TIME <= RUNLIST[i].to ) {
+        return RUNLIST[i]
+      }
+    }
+  }
+
   handleDrop(e) {
     e.preventDefault()
-    this.CONTENT_TEXT = e.dataTransfer.getData('text')
+    const CONTENT_TEXT = e.dataTransfer.getData('text')
+    // Add Item to BlackBox
+    this.props.dispatch(addItemBlackBox({
+      body : CONTENT_TEXT,
+      fileType : this.getCodeInFocus().code.fileType,
+      id : 'bb_' + uid(12)
+    }))
+    // Set clases
     this.CLASES = {
       dropZone : 'BlackBox__dropZone',
       dropZoneBall : 'BlackBox__dropZone__ball'
@@ -61,7 +89,6 @@ class BlackBox extends Component {
     }
 
     const CLS = this.props.state.blackBox.show ? 'BlackBox BlackBox__show' : 'BlackBox'
-    console.log(CLS)
 
     return(
       <div className={CLS}  >
@@ -70,14 +97,9 @@ class BlackBox extends Component {
           onDrop={this.handleDrop}
           onDragLeave={this.handleDropLeave}
           className={ this.CLASES.dropZone }
-        >
-        <pre>
-          {
-            this.CONTENT_TEXT
-          }
-        </pre>
-        </div>
+        ></div>
         <div className={ this.CLASES.dropZoneBall }></div>
+        <BlackBoxItems />
       </div>
     )
   }
