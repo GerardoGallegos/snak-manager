@@ -129,3 +129,28 @@ export function setAudioStatus(audioStatus) {
     audioStatus : audioStatus
   }
 }
+
+
+/*   BlackBox
+*******************************/
+
+export function showBlackBox(bool) {
+  return {
+    type: 'SHOW_BLACKBOX',
+    show : bool
+  }
+}
+
+export function addItemBlackBox(data) {
+  return {
+    type: 'ADD_ITEM_BLACKBOX',
+    data : data
+  }
+}
+
+export function deleteItemBlackBox(data) {
+  return {
+    type: 'DELETE_ITEM_BLACKBOX',
+    data : data
+  }
+}

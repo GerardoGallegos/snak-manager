@@ -8,6 +8,7 @@ import './Trik.scss'
 import ProgressBar from './ProgressBar/ProgressBar.jsx'
 import PlayButton from './PlayButton/PlayButton.jsx'
 import RenderDisplay from './RenderDisplay/RenderDisplay.jsx'
+import BlackBox from './BlackBox/BlackBox.jsx'
 // utils
 import formatTime from './util/formatTime'
 // Actions
@@ -120,6 +121,7 @@ class Trik extends Component {
   render() {
     return(
       <div>
+        <BlackBox />
         <span className="Seconds">{ formatTime(this.time) }</span>
         <PlayButton play={ this.tickPlay } stop={ this.thickPause } />
         <audio ref="audio">

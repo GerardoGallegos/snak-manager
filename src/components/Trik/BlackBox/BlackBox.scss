@@ -1,0 +1,78 @@
+
+body {
+      overflow: hidden;
+}
+
+.BlackBox {
+  width : 15%;
+  height: 100%;
+  position : absolute;
+  left : -30%;
+  top: 0;
+  background-color: #1C1D22;
+  color : rgb(0, 212, 140);
+  font-size: 9px;
+  transition: .4s ease-out;
+
+  &__dropZone {
+    position: relative;
+    width: 90%;
+    height: 45%;
+    margin: 20% auto;
+    border: 3px dashed #CCC;
+    z-index: 999;
+
+    &-active {
+      border: 3px dashed #CDDC39;
+      background-color: rgba(147, 180, 14, 0.25);
+    }
+
+    &__ball {
+      width: 180px;
+      height: 180px;
+      padding: 10px;
+      background: #CCC url('/assets/img/trik/code.svg') center no-repeat;
+      background-size: 50%;
+      border-radius: 50%;
+      position: absolute;
+      z-index:200;
+      left: 14%;
+      top: 19%;
+
+      &-active {
+        background: #CDDC39 url('/assets/img/trik/code.svg') center no-repeat;
+        background-size: 50%;
+        border-radius: 50%;
+        animation: boun 1.5s infinite;
+      }
+    }
+  }
+
+  &__show {
+    left : 0%;
+  }
+}
+
+@keyframes showVertical {
+  0% {
+
+    left: -10%;
+  }
+  100% {
+
+    left: 0%;
+  }
+}
+
+
+@keyframes boun {
+  0% {
+    transform : scale(.7,.7);
+  }
+  50% {
+    transform : scale(1,1);
+  }
+  100% {
+    transform : scale(.7,.7)
+  }
+}

@@ -7,6 +7,8 @@ import { updateInstruction } from './instructions-reducers'
 import { updateCode, changeSyntax } from './code-reducers'
 import { addImage } from './image-reducers'
 import { setProgressBar, setTime, showMinimap, setPosX, setDuration, setAudioStatus } from './trik-reducers'
+import { showBlackBox, addItemBlackBox, deleteItemBlackBox } from './blackBox-reducers'
+
 
 import { showPreview, showWorkingArea } from './preview-reducers'
 
@@ -32,6 +34,10 @@ const INITIALSTATE = {
     posX : 0,
     duration : 0,
     audio_status : 'load'
+  },
+  blackBox : {
+    show : false,
+    items : []
   }
 }
 
@@ -90,6 +96,16 @@ function snak(state = INITIALSTATE, action) {
 
   case 'SET_AUDIO_STATUS':
     return setAudioStatus(state, action)
+
+  // BlackBox__________________________________
+  case 'SHOW_BLACKBOX':
+    return showBlackBox(state, action)
+
+  case 'ADD_ITEM_BLACKBOX':
+    return addItemBlackBox(state, action)
+
+  case 'DELETE_ITEM_BLACKBOX':
+    return deleteItemBlackBox(state, action)
 
   default:
     return state

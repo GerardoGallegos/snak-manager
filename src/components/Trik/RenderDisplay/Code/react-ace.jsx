@@ -1,5 +1,12 @@
 import ace from 'brace'
 import React, { Component, PropTypes } from 'react'
+import { connect } from 'react-redux'
+
+// actions
+import {
+  showBlackBox
+} from '../../../../actions/snak-actions'
+
 
 const editorOptions = [
   'minLines',
@@ -12,7 +19,7 @@ const editorOptions = [
   'enableSnippets '
 ]
 
-export default class ReactAce extends Component {
+class ReactAce extends Component {
   constructor(props) {
     super(props);
     [
@@ -45,26 +52,37 @@ export default class ReactAce extends Component {
     } = this.props
 
     this.editor = ace.edit(name)
+    const PROPS = this.props
 
     this.editor.$mouseHandler.drag = function(e) {
+      console.log(e)
       this.cancelDrag = false
       var editor = this.editor
       var target = this.editor.container
       target.draggable = true
       this.editor.renderer.$cursorLayer.setBlinking(false)
       this.editor.setStyle('ace_dragging')
-      this.setState('dragReady')
+      //this.setState('dragReady')
       console.log('DRAG START')
 
+      PROPS.dispatch(showBlackBox(true))
+      console.log(this)
 
       target.addEventListener('dragend', (e)=>{
-        console.log('DRAG END')
+        // DRAG END
         // Handle dragend
-      })
+        PROPS.dispatch(showBlackBox(false))
+      }, false)
 
       target.addEventListener('dragstart', (e)=>{
         // Handle dragstart
-      })
+        // DRAGSTART
+        // Create custom image drag only for testing
+        const IMG = document.createElement('img')
+        IMG.src = '/assets/img/trik/code.svg'
+        IMG.style.width = '50px'
+        e.dataTransfer.setDragImage(IMG, 0, 0)
+      }, false)
 
     }
 
@@ -258,3 +276,13 @@ ReactAce.defaultProps = {
   enableBasicAutocompletion: true,
   enableLiveAutocompletion: true,
 }
+
+
+function mapStateToProps(state, props) {
+  return {
+    state : state.snak
+  }
+}
+
+export { ReactAce }
+export default connect(mapStateToProps)(ReactAce)
