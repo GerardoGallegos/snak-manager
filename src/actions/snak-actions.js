@@ -154,3 +154,18 @@ export function deleteItemBlackBox(data) {
     data : data
   }
 }
+
+
+export function showEditorBlackBox(bool) {
+  return {
+    type: 'SHOW_EDITOR_BLACKBOX',
+    show : bool
+  }
+}
+
+export function setItemFocusBlackBox(data) {
+  return {
+    type: 'SET_ITEM_FOCUS_BLACKBOX',
+    data : data
+  }
+}

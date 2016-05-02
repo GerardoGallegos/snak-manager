@@ -2,10 +2,12 @@ import ace from 'brace'
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
+// styles
+import './Editor-code.scss'
 // actions
 import {
-  showBlackBox
-} from '../../../../actions/snak-actions'
+  showEditorBlackBox
+} from '../../../actions/snak-actions'
 
 
 const editorOptions = [
@@ -25,9 +27,7 @@ class ReactAce extends Component {
     [
       'onChange',
       'onFocus',
-      'onBlur',
-      'onCopy',
-      'onPaste',
+      'hideEditor'
     ]
     .forEach(method => {
       this[method] = this[method].bind(this)
@@ -46,7 +46,6 @@ class ReactAce extends Component {
       showGutter,
       wrapEnabled,
       showPrintMargin,
-      keyboardHandler,
       onLoad,
       commands,
     } = this.props
@@ -62,28 +61,12 @@ class ReactAce extends Component {
       target.draggable = true
       this.editor.renderer.$cursorLayer.setBlinking(false)
       this.editor.setStyle('ace_dragging')
-
       // DRAG START
-
-      // If blackBox is open no hide
-      let HOLD_SHOW_BLACKBOX
-      if(PROPS.state.blackBox.show === false) {
-        HOLD_SHOW_BLACKBOX = false
-        PROPS.dispatch(showBlackBox(true))
-      }
-      else {
-        HOLD_SHOW_BLACKBOX = true
-      }
-
 
       target.addEventListener('dragend', (e)=>{
         // DRAG END
         // Handle dragend
-        // If blackBox is open no hide
-        if(!HOLD_SHOW_BLACKBOX) {
-          PROPS.dispatch(showBlackBox(false))
-        }
-
+        //PROPS.dispatch(showBlackBox(false))
       }, false)
 
       target.addEventListener('dragstart', (e)=>{
@@ -98,9 +81,6 @@ class ReactAce extends Component {
 
     }
 
-    if (onBeforeLoad) {
-      onBeforeLoad(ace)
-    }
 
     const editorProps = Object.keys(this.props.editorProps)
     for (let i = 0; i < editorProps.length; i++) {
@@ -115,9 +95,6 @@ class ReactAce extends Component {
     this.editor.getSession().setUseWrapMode(wrapEnabled)
     this.editor.setShowPrintMargin(showPrintMargin)
     this.editor.on('focus', this.onFocus)
-    this.editor.on('blur', this.onBlur)
-    this.editor.on('copy', this.onCopy)
-    this.editor.on('paste', this.onPaste)
     this.editor.on('change', this.onChange)
 
     for (let i = 0; i < editorOptions.length; i++) {
@@ -125,19 +102,6 @@ class ReactAce extends Component {
       this.editor.setOption(option, this.props[option])
     }
 
-    if (Array.isArray(commands)) {
-      commands.forEach((command) => {
-        this.editor.commands.addCommand(command)
-      })
-    }
-
-    if (keyboardHandler) {
-      this.editor.setKeyboardHandler('ace/keyboard/' + keyboardHandler)
-    }
-
-    if (onLoad) {
-      onLoad(this.editor)
-    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -194,33 +158,30 @@ class ReactAce extends Component {
     }
   }
 
-  onBlur() {
-    if (this.props.onBlur) {
-      this.props.onBlur()
-    }
+  hideEditor() {
+    this.props.dispatch(showEditorBlackBox(false))
   }
 
-  onCopy(text) {
-    if (this.props.onCopy) {
-      this.props.onCopy(text)
-    }
-  }
-
-  onPaste(text) {
-    if (this.props.onPaste) {
-      this.props.onPaste(text)
-    }
-  }
 
   render() {
     const { name, className, width, height } = this.props
     const divStyle = { width, height }
+    const CLASE_EDITOR = this.props.state.blackBox.showEditor ? 'EditorCode EditorCode-show' : 'EditorCode'
     return (
-      <div
-        id={name}
-        className={className}
-        style={divStyle}
-      >
+      <div className={CLASE_EDITOR}>
+        <div className="EditorCode__bg"></div>
+        <div className="EditorCode__tools">
+          <button>Delete</button>
+          <span >{ this.props.state.blackBox.itemInFocus.fileName }</span>
+          <button>{ this.props.state.blackBox.itemInFocus.fileType }</button>
+          <button onClick={ this.hideEditor }>X</button>
+        </div>
+        <div
+          id={name}
+          className='EditorCode__code'
+          style={divStyle}
+        >
+        </div>
       </div>
     )
   }
@@ -230,38 +191,14 @@ ReactAce.propTypes = {
   mode: PropTypes.string,
   theme: PropTypes.string,
   name: PropTypes.string,
-  className: PropTypes.string,
   height: PropTypes.string,
   width: PropTypes.string,
   fontSize: PropTypes.number,
   showGutter: PropTypes.bool,
   onChange: PropTypes.func,
-  onCopy: PropTypes.func,
-  onPaste: PropTypes.func,
   onFocus: PropTypes.func,
-  onBlur: PropTypes.func,
   value: PropTypes.string,
-  onLoad: PropTypes.func,
-  onBeforeLoad: PropTypes.func,
-  minLines: PropTypes.number,
   maxLines: PropTypes.number,
-  readOnly: PropTypes.bool,
-  highlightActiveLine: PropTypes.bool,
-  tabSize: PropTypes.number,
-  showPrintMargin: PropTypes.bool,
-  cursorStart: PropTypes.number,
-  editorProps: PropTypes.object,
-  keyboardHandler: PropTypes.string,
-  wrapEnabled: PropTypes.bool,
-  enableBasicAutocompletion: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.array,
-  ]),
-  enableLiveAutocompletion: PropTypes.oneOfType([
-    PropTypes.bool,
-    PropTypes.array,
-  ]),
-  commands: PropTypes.array,
 }
 
 ReactAce.defaultProps = {
@@ -274,19 +211,6 @@ ReactAce.defaultProps = {
   fontSize: 12,
   showGutter: true,
   onChange: null,
-  onPaste: null,
-  onLoad: null,
-  minLines: null,
-  maxLines: null,
-  readOnly: false,
-  highlightActiveLine: true,
-  showPrintMargin: true,
-  tabSize: 4,
-  cursorStart: 1,
-  editorProps: {},
-  wrapEnabled: false,
-  enableBasicAutocompletion: true,
-  enableLiveAutocompletion: true,
 }
 
 

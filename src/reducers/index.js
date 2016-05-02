@@ -7,7 +7,7 @@ import { updateInstruction } from './instructions-reducers'
 import { updateCode, changeSyntax } from './code-reducers'
 import { addImage } from './image-reducers'
 import { setProgressBar, setTime, showMinimap, setPosX, setDuration, setAudioStatus } from './trik-reducers'
-import { showBlackBox, addItemBlackBox, deleteItemBlackBox } from './blackBox-reducers'
+import { showBlackBox, addItemBlackBox, deleteItemBlackBox, showEditorBlackBox, setItemFocusBlackBox } from './blackBox-reducers'
 
 
 import { showPreview, showWorkingArea } from './preview-reducers'
@@ -37,7 +37,11 @@ const INITIALSTATE = {
   },
   blackBox : {
     show : false,
-    items : []
+    showEditor : false,
+    items : [],
+    itemInFocus : {
+
+    }
   }
 }
 
@@ -106,6 +110,12 @@ function snak(state = INITIALSTATE, action) {
 
   case 'DELETE_ITEM_BLACKBOX':
     return deleteItemBlackBox(state, action)
+
+  case 'SHOW_EDITOR_BLACKBOX':
+    return showEditorBlackBox(state, action)
+
+  case 'SET_ITEM_FOCUS_BLACKBOX':
+    return setItemFocusBlackBox(state, action)
 
   default:
     return state

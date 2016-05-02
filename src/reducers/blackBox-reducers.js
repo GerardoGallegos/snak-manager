@@ -43,3 +43,38 @@ export function deleteItemBlackBox (state, action) {
 
   return STATE
 }
+
+
+/**
+ * @method showEditorBlackBox
+ * @param   {Object} state - General state
+ * @param   {Object} action - { type : String, show : Boolean }
+ * @returns {Object} new State
+ */
+export function showEditorBlackBox (state, action) {
+  const STATE = Object.assign({}, state)
+  STATE.blackBox.showEditor = action.show
+  return STATE
+}
+
+
+
+/**
+ * @method setItemFocusBlackBox
+ * @param   {Object} state - General state
+ * @param   {Object} action - { type : String, data : Object }
+ * @returns {Object} new State
+ */
+export function setItemFocusBlackBox (state, action) {
+  const STATE = Object.assign({}, state)
+
+  // Iterates in the Array to search the id position
+  for(let i=0; i<STATE.blackBox.items.length; i++) {
+    // find
+    if(STATE.blackBox.items[i].id === action.data.id) {
+      STATE.blackBox.itemInFocus = STATE.blackBox.items[i]
+      i = STATE.blackBox.items.length
+    }
+  }
+  return STATE
+}

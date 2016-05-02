@@ -7,6 +7,7 @@ import uid from 'uid'
 import './BlackBox.scss'
 // Components
 import BlackBoxItems from './BlackBox-items.jsx'
+import EditorCode from './Editor-code.jsx'
 // actions
 import {
   addItemBlackBox,
@@ -71,6 +72,7 @@ class BlackBox extends Component {
     // Add Item to BlackBox
     this.props.dispatch(addItemBlackBox({
       body : CONTENT_TEXT,
+      fileName : this.getCodeInFocus().code.fileName,
       fileType : this.getCodeInFocus().code.fileType,
       id : 'bb_' + uid(12)
     }))

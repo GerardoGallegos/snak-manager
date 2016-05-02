@@ -3,6 +3,14 @@ import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 // styles
 import './BlackBox.scss'
+// Actions
+import {
+   showEditorBlackBox,
+   setItemFocusBlackBox
+} from '../../../actions/snak-actions'
+
+
+
 
 class BlackBoxItems extends Component {
 
@@ -58,7 +66,10 @@ class BlackBoxItems extends Component {
       if(ITEMS[i].id === ID_TARGET) {
         FILE_FOCUS = ITEMS[i]
         i = ITEMS.length
-        console.log(FILE_FOCUS )
+
+        this.props.dispatch(showEditorBlackBox(true))
+        this.props.dispatch(setItemFocusBlackBox(FILE_FOCUS))
+
       }
     }
 

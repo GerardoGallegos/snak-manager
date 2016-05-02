@@ -8,7 +8,7 @@ import './Trik.scss'
 import ProgressBar from './ProgressBar/ProgressBar.jsx'
 import PlayButton from './PlayButton/PlayButton.jsx'
 import RenderDisplay from './RenderDisplay/RenderDisplay.jsx'
-import BlackBox from './BlackBox/BlackBox.jsx'
+import BlackBox from './BlackBox/index.jsx'
 // utils
 import formatTime from './util/formatTime'
 // Actions
@@ -16,7 +16,8 @@ import {
    showWorkingArea,
    setDuration,
    setTime, setProgressBar,
-   setAudioStatus
+   setAudioStatus,
+   showBlackBox
 } from '../../actions/snak-actions'
 
 
@@ -35,7 +36,8 @@ class Trik extends Component {
       'thickPause',
       'work',
       'showWorkingArea',
-      'changeTime'
+      'changeTime',
+      'showBlackBox'
 
     ].forEach((method)=>{
       this[method] = this[method].bind(this)
@@ -117,6 +119,17 @@ class Trik extends Component {
     this.forceUpdate()
   }
 
+  showBlackBox(){
+
+    if(this.props.state.blackBox.show) {
+      this.props.dispatch(showBlackBox(false))
+    }
+    else {
+      this.props.dispatch(showBlackBox(true))
+    }
+
+  }
+
 
   render() {
     return(
@@ -129,7 +142,8 @@ class Trik extends Component {
         </audio>
         <RenderDisplay showNow={ this.SHOW_NOW } />
         <ProgressBar changeTime={ this.changeTime }/>
-        <button onClick={ this.showWorkingArea } style={ {'position': 'absolute', 'bottom': 0 }}>WorkingArea</button>
+        <button onClick={ this.showWorkingArea } style={ {'position': 'absolute', 'bottom': 0, left: '500px' }}>WorkingArea</button>
+        <button onClick={ this.showBlackBox } style={ {'position': 'absolute', 'bottom': 0, left: '700px' }}>Dip Code</button>
       </div>
     )
   }
