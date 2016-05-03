@@ -5,6 +5,11 @@ import { connect } from 'react-redux'
 // Components
 import BlackBox from './BlackBox.jsx'
 import EditorCode from './Editor-code.jsx'
+// actions
+import {
+  editCodeBlackBox
+} from '../../../actions/snak-actions'
+
 
 class BlackBoxIndex extends Component {
 
@@ -19,28 +24,15 @@ class BlackBoxIndex extends Component {
     })
   }
 
+
+
   render() {
-    const MODE = this.props.state.blackBox.itemInFocus.fileType ? this.props.state.blackBox.itemInFocus.fileType : 'javascript'
-    const VALUE = this.props.state.blackBox.itemInFocus.body ? this.props.state.blackBox.itemInFocus.body : ''
+    // const MODE = this.props.state.blackBox.itemInFocus.fileType ? this.props.state.blackBox.itemInFocus.fileType : 'javascript'
+    // const VALUE = this.props.state.blackBox.itemInFocus.body ? this.props.state.blackBox.itemInFocus.body : ''
     return (
       <div>
         <BlackBox />
-        <EditorCode
-            showGutter={false}
-            mode={MODE}
-            theme="monokai"
-            name="AceCodeEditorClient_blackBox"
-            fontSize={17}
-            height="100%"
-            width="100%"
-            value={VALUE}
-            editorProps={
-              {
-                $blockScrolling: true,
-                mode: 'javascript'
-              }
-            }
-        />
+        <EditorCode />
       </div>
     )
   }

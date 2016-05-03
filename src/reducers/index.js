@@ -7,7 +7,7 @@ import { updateInstruction } from './instructions-reducers'
 import { updateCode, changeSyntax } from './code-reducers'
 import { addImage } from './image-reducers'
 import { setProgressBar, setTime, showMinimap, setPosX, setDuration, setAudioStatus } from './trik-reducers'
-import { showBlackBox, addItemBlackBox, deleteItemBlackBox, showEditorBlackBox, setItemFocusBlackBox } from './blackBox-reducers'
+import { showBlackBox, addItemBlackBox, deleteItemBlackBox, showEditorBlackBox, setItemFocusBlackBox, editCodeBlackBox } from './blackBox-reducers'
 
 
 import { showPreview, showWorkingArea } from './preview-reducers'
@@ -116,6 +116,9 @@ function snak(state = INITIALSTATE, action) {
 
   case 'SET_ITEM_FOCUS_BLACKBOX':
     return setItemFocusBlackBox(state, action)
+
+  case 'EDIT_CODE_BLACKBOX':
+    return editCodeBlackBox(state, action)
 
   default:
     return state

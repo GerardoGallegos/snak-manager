@@ -78,3 +78,32 @@ export function setItemFocusBlackBox (state, action) {
   }
   return STATE
 }
+
+
+/**
+ * @method editCodeBlackBox
+ * @param   {Object} state - General state
+ * @param   {Object} action - { type : String, data : Object } {
+   body : CONTENT_TEXT,
+   fileName : this.getCodeInFocus().code.fileName,
+   fileType : this.getCodeInFocus().code.fileType,
+   id : 'bb_' + uid(12)
+ }
+ * @returns {Object} new State
+ */
+export function editCodeBlackBox(state, action) {
+  const STATE = Object.assign({}, state)
+
+  // Iterates in the Array to search the id position
+  for (let i = 0; i < STATE.blackBox.items.length; i++) {
+    // find
+    if (STATE.blackBox.items[i].id === action.data.id) {
+      console.log(STATE.blackBox.items[i], action.data);
+      STATE.blackBox.items[i] = action.data
+      STATE.blackBox.itemInFocus = STATE.blackBox.items[i]
+      //i = STATE.blackBox.items.length
+    }
+
+  }
+  return STATE
+}

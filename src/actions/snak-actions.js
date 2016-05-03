@@ -169,3 +169,11 @@ export function setItemFocusBlackBox(data) {
     data : data
   }
 }
+
+
+export function editCodeBlackBox(data) {
+  return {
+    type: 'EDIT_CODE_BLACKBOX',
+    data : data
+  }
+}
