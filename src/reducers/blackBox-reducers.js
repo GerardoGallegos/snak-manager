@@ -38,6 +38,12 @@ export function deleteItemBlackBox (state, action) {
       STATE.blackBox.items.splice(i, 1)
       // exit to Iterate
       i = STATE.blackBox.items.length
+      // Set item in focus
+      STATE.blackBox.itemInFocus = {}
+      // Hide Editor
+      STATE.blackBox.showEditor = false
+      // If items = 0 hide BlackBox
+      STATE.blackBox.items.length <= 0 ? STATE.blackBox.show = false : true
     }
   }
 
@@ -83,12 +89,12 @@ export function setItemFocusBlackBox (state, action) {
 /**
  * @method editCodeBlackBox
  * @param   {Object} state - General state
- * @param   {Object} action - { type : String, data : Object } {
-   body : CONTENT_TEXT,
-   fileName : this.getCodeInFocus().code.fileName,
-   fileType : this.getCodeInFocus().code.fileType,
-   id : 'bb_' + uid(12)
- }
+ * @param   {Object} action - { type : String, data : {
+     body : String,
+     fileName : String,
+     fileType : String,
+     id : String
+  }}
  * @returns {Object} new State
  */
 export function editCodeBlackBox(state, action) {
