@@ -17,11 +17,25 @@ import 'brace/theme/monokai'
 class CodeClient extends Component {
   constructor(props){
     super(props)
-    this.onChangeCode = this.onChangeCode.bind(this)
   }
 
-  onChangeCode(newCodeValue){
-    // Action to do
+  getFileIco (fileType) {
+    switch(fileType){
+    case 'javascript':
+      return 'JS'
+      break
+
+    case 'html':
+      return '</>'
+      break
+
+    case 'css':
+      return '#'
+      break
+
+    default:
+      return 'File'
+    }
   }
 
   render() {
@@ -29,11 +43,14 @@ class CodeClient extends Component {
     return (
       <div className="Code-panel">
         <div className="Code-panel__top">
-          <div className='Code-panel__top__ball'></div>
-          <div className='Code-panel__top__ball'></div>
-          <div className='Code-panel__top__ball'></div>
+          <div className='Code-panel__top__ball Code_color-pink'></div>
+          <div className='Code-panel__top__ball Code_color-orange'></div>
+          <div className='Code-panel__top__ball Code_color-purple'></div>
           <span className="Code-panel__top__fileName">
             { this.props.code.fileName }
+            <span className={`Code-panel__top__fileIco color-${this.props.code.fileType}`}>
+              { this.getFileIco(this.props.code.fileType) }
+            </span>
           </span>
         </div>
         <div className="Code-panel__code">

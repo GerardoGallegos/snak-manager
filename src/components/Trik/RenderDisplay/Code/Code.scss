@@ -1,3 +1,4 @@
+
 .Code-panel {
   display: block;
   width: 50%;
@@ -5,7 +6,7 @@
   height: 400px;
   margin: 5% auto;
   background-color: #272822;
-  border-radius: 10px 10px 5px 5px;
+  border-radius: 25px 23px 5px 5px;
   box-shadow: 0px 14px 50px rgba(0, 0, 0, 0.2);
 
   &__code {
@@ -17,15 +18,14 @@
   &__top {
     width: 100%;
     height: 44px;
-    background-color: rgb(83, 83, 83);
+    background-color: #FFFFFF;
     border-radius: 10px 10px 0 0;
-    box-shadow: 0 2px 2px rgba(0,0,0,0.5);
     border-bottom: 1px solid #6C6C6C;
 
     &__ball {
       width: 25px;
       height: 25px;
-      background-color: #CCC;
+      background-color: #03A9F4;
       float: left;
       margin-left: 10px;
       margin-top: 10px;
@@ -33,13 +33,37 @@
     }
 
     &__fileName {
-      color: #FFF;
+      color: #000;
       display: block;
       width: 94%;
       text-align: center;
       line-height: 2;
       font-size: 20px;
-      text-shadow: 0px 1px 5px rgba(0, 0, 0, .5);
+      background: #202020;
+      color: #FFF;
+      border-radius: 15px 15px 0 0;
+      width: 30%;
+      display: block;
+      margin: 8px auto 0 auto;
+      position: relative;
+      top: 5px;
     }
+
+    &__fileIco {
+      position: absolute;
+      right: 10%;
+    }
+  }
+}
+
+.Code_color {
+  &-pink {
+    background-color: #ff2383;
+  }
+  &-orange {
+    background-color: #d4a825;
+  }
+  &-purple {
+    background-color: #7e6ec6;
   }
 }

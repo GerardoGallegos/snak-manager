@@ -54,6 +54,7 @@ class ProgressBar extends Component {
 
   handleMouseLeave(event) {
     this.DISPLAY_MINIMAP = false
+    this.forceUpdate()
   }
 
   updateProgress(event) {
