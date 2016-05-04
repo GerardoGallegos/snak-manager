@@ -98,7 +98,6 @@ export function editCodeBlackBox(state, action) {
   for (let i = 0; i < STATE.blackBox.items.length; i++) {
     // find
     if (STATE.blackBox.items[i].id === action.data.id) {
-      console.log(STATE.blackBox.items[i], action.data);
       STATE.blackBox.items[i] = action.data
       STATE.blackBox.itemInFocus = STATE.blackBox.items[i]
       //i = STATE.blackBox.items.length

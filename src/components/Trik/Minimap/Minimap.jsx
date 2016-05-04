@@ -25,29 +25,28 @@ class Minimap extends Component {
 
   }
 
-  updateMinimap(){
+  componentDidMount () {
+    this.DATA = this.props.state.runList
     const mapElement = ReactDOM.findDOMNode(this.refs.map)
+    mapElement.style.display = 'block'
+    this.center = mapElement.clientWidth / 2
+    mapElement.style.display = 'none'
+    this.props.posX - this.center
+  }
 
+  updateMinimap () {
     if(this.PROGRESS_TIME<3) {
-      this.POSX =  this.props.state.trik.posX
+      this.POSX =  this.props.posX
     }
     else {
-      this.POSX =  this.props.state.trik.posX - (mapElement.clientWidth / 2)
+      this.MINIMAP_LEFT = this.props.posX - this.center
     }
-
-    mapElement.style.left =  `${this.POSX}px`
-
   }
 
   componentWillReceiveProps(nextProps) {
     this.mapWork()
-    if(nextProps.state.trik.posX !== this.POSX) {
-      this.DATA = this.props.state.runList
-      this.updateMinimap()
-    }
+    this.updateMinimap()
   }
-
-
 
   renderMinimap(item) {
     switch (item.type) {
@@ -111,13 +110,13 @@ class Minimap extends Component {
   }
 
   render() {
-    this.PROGRESS_TIME = Math.round((this.props.state.trik.duration * ( (this.props.state.trik.posX * 100) / window.innerWidth)) / 100)
+    this.PROGRESS_TIME = Math.round((this.props.state.trik.duration * ( (this.props.posX * 100) / window.innerWidth)) / 100)
     const TIME = formatTime(this.PROGRESS_TIME)
-    const DISPLAY = this.props.state.trik.showMinimap ? 'block' : 'none'
+    const DISPLAY = this.props.display ? 'block' : 'none'
 
 
     return(
-      <div ref="map" className="Minimap" style={{ display : DISPLAY, left : `${this.POSX}px`}}>
+      <div ref="map" className="Minimap" style={{ display : DISPLAY, left : `${ this.MINIMAP_LEFT }px` }}>
             {
               this.RENDER_MINIMAP
             }

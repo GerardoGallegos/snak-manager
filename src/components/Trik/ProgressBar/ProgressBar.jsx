@@ -47,13 +47,13 @@ class ProgressBar extends Component {
   }
 
   handleProgressOver(event){
-    this.props.dispatch(setPosX(event.clientX))
-    this.props.dispatch(showMinimap(true))
+    this.POSX = event.clientX
+    this.DISPLAY_MINIMAP = true
     this.forceUpdate()
   }
 
   handleMouseLeave(event) {
-    this.props.dispatch(showMinimap(false))
+    this.DISPLAY_MINIMAP = false
   }
 
   updateProgress(event) {
@@ -79,7 +79,7 @@ class ProgressBar extends Component {
           </div>
         </div>
 
-        <Minimap />
+        <Minimap display={this.DISPLAY_MINIMAP} posX={this.POSX}/>
       </div>
     )
   }
