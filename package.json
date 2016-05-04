@@ -46,6 +46,7 @@
     "enzyme": "^2.2.0",
     "eslint": "^2.8.0",
     "eslint-plugin-react": "^5.0.1",
+    "file-loader": "^0.8.5",
     "hamsterjs": "^1.1.2",
     "jest": "^0.1.40",
     "jest-cli": "^11.0.2",
@@ -62,6 +63,7 @@
     "sass-loader": "^3.2.0",
     "style-loader": "^0.13.1",
     "uid": "0.0.2",
+    "url-loader": "^0.5.7",
     "wavesurfer.js": "^1.1.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.14.1"

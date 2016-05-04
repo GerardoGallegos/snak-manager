@@ -3,7 +3,9 @@ import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 // styles
+import '../../../../assets/icons/icons.scss'
 import './Editor-code.scss'
+
 // actions
 import {
   showEditorBlackBox,
@@ -20,7 +22,8 @@ class ReactAce extends Component {
     [
       'hideEditor',
       'onChangeCode',
-      'deleteItemBlackBox'
+      'deleteItemBlackBox',
+      'getFileIco'
     ]
     .forEach(method => {
       this[method] = this[method].bind(this)
@@ -44,6 +47,25 @@ class ReactAce extends Component {
     this.props.dispatch(deleteItemBlackBox(this.props.state.blackBox.itemInFocus))
   }
 
+  getFileIco (fileType) {
+    switch(fileType){
+    case 'javascript':
+      return 'JS'
+      break
+
+    case 'html':
+      return '</>'
+      break
+
+    case 'css':
+      return '#'
+      break
+
+    default:
+      return 'File'
+    }
+  }
+
   render() {
     const { name, className, width, height } = this.props
     const divStyle = { width, height }
@@ -55,10 +77,15 @@ class ReactAce extends Component {
       <div className={ CLASE_EDITOR }>
         <div className="EditorCode__bg"></div>
         <div className="EditorCode__tools">
-          <button onClick={ this.deleteItemBlackBox }>Delete</button>
-          <span >{ this.props.state.blackBox.itemInFocus.fileName }</span>
-          <button>{ this.props.state.blackBox.itemInFocus.fileType }</button>
-          <button onClick={ this.hideEditor }>X</button>
+          <div onClick={ this.deleteItemBlackBox } className="EditorCode__tools__button icon-delete"></div>
+          <span className="EditorCode__tools__fileName">{ this.props.state.blackBox.itemInFocus.fileName }</span>
+          <span className="EditorCode__tools__fileName">{ this.props.state.blackBox.itemInFocus.fileType }
+            <span className={`color-${this.props.state.blackBox.itemInFocus.fileType}`}>
+              { this.getFileIco(this.props.state.blackBox.itemInFocus.fileType) }
+            </span>
+          </span>
+          <div onClick={ this.hideEditor } className="EditorCode__tools__button icon-exit"></div>
+
         </div>
         <EditorCode
             onChange={ this.onChangeCode }
